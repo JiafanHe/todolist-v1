@@ -7,9 +7,10 @@ let items = ["But food","Cood food","Eat food"];
 // set up ejs
 app.set('view engine', 'ejs');
 
-// set up bodyParser
+// set up bodyParser and tell express to serve
+// up the public folder
 app.use(bodyParser.urlencoded({extended:true}));
-
+app.use(express.static("public"));
 
 app.get("/",function(req,res){
 
