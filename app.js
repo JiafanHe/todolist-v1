@@ -1,10 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser")
+// require the component defined by ourselve
+const date = require(__dirname + "/components/date.js")
 
 const app = express();
 
-let items = ["Buy food","Cood food","Eat food"];
-let workItems = [];
+const items = ["Buy food","Cood food","Eat food"];
+const workItems = [];
 // set up ejs
 app.set('view engine', 'ejs');
 
@@ -15,15 +17,7 @@ app.use(express.static("public"));
 
 app.get("/",function(req,res){
 
-  let date = new Date();
-  let option = {
-    weekday:"long",
-    month:"long",
-    day:"numeric"
-  };
-
-// format the date
-  let day=date.toLocaleDateString("en-US",option);
+  const day = date.getDate();
 
 // render it by ejs instead of res.send()
   res.render("list",{listTitle:day,items:items});
@@ -33,7 +27,7 @@ app.post("/",function(req,res){
 
 // Decide which route to render and which list to add items
 // based on the information provided by the button.
-  let item = req.body.newItem;
+  const item = req.body.newItem;
   if(req.body.list==="Work"){
     workItems.push(item);
     res.redirect("/work");
@@ -53,7 +47,7 @@ app.get("/work",function(req,res){
 })
 
 app.post("/work",function(req,res){
-  let item = req.body.newItem;
+  const item = req.body.newItem;
   workItems.push(item);
   res.redirect("/work");
 })
