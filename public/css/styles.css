@@ -30,15 +30,20 @@ h1 {
   border-bottom: 1px solid #F1F1F1;
 }
 
+/* target to the last item */
 .item:last-child {
   border-bottom: 0;
 }
 
+/* Look for an input that is in a checked state */
+/* Select all <p> elements that are placed immediately after the input:checked
+element */
 input:checked+p {
   text-decoration: line-through;
   text-decoration-color: #A683E3;
 }
 
+/* Look at all the input which has attribute type equal to checkbox */
 input[type="checkbox"] {
   margin: 20px;
 }
@@ -84,6 +89,7 @@ input[type="text"]:focus {
   box-shadow: inset 0 -3px 0 0 #A683E3;
 }
 
+/* Select the placeholder */
 ::placeholder {
   color: grey;
   opacity: 1;
